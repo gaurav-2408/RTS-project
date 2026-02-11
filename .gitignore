@@ -1,0 +1,32 @@
+# Object files and compiled binaries
+*.o
+*.obj
+*.exe
+a.out
+*.out
+*.elf
+
+# Dependency and coverage files
+*.d
+*.gcda
+*.gcno
+*.gcov
+
+# Build directories
+build/
+bin/
+
+# Editor and IDE files
+.vscode/
+.idea/
+.vs/
+*.swp
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs and temporary
+*.log
+.tmp
