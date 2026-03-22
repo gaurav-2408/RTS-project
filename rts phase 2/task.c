@@ -9,6 +9,10 @@ int log_count = 0;
 JobStat job_stats[MAX_TASKS][MAX_JOBS_PER_TASK];
 int job_count_task[MAX_TASKS] = {0};
 
+int voluntary_cs = 0;
+int involuntary_cs = 0;
+int preemptions_count = 0;
+
 static int gcd(int a, int b) {
     return (b == 0) ? a : gcd(b, a % b);
 }

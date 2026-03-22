@@ -19,6 +19,9 @@ int main(int argc, char *argv[]) {
 
     // Reset for RM
     log_count = 0;
+    voluntary_cs = 0;
+    involuntary_cs = 0;
+    preemptions_count = 0;
     memset(job_stats, 0, sizeof(job_stats));
     memset(job_count_task, 0, sizeof(job_count_task));
     for(int i = 0; i < task_count; i++) {

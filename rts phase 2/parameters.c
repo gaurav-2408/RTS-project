@@ -1,5 +1,6 @@
 #include "parameters.h"
 #include <stdio.h>
+#include <limits.h>
 
 void printParameters(char *name, int hp, int is_first) {
 
@@ -8,24 +9,16 @@ void printParameters(char *name, int hp, int is_first) {
     fprintf(fp, "\n%s Scheduler Results:\n", name);
 
     int decision_points = log_count;
-    int context_switch = log_count - 1;
-    int preemptions = 0;
+    int context_switch = voluntary_cs + involuntary_cs;
     int cache_points = 0;
 
     for (int i = 1; i < log_count; i++) {
-
-        if (logs[i].task_id != logs[i-1].task_id) {
-
-            int prev_t = logs[i-1].task_id - 1;
-            int prev_j = logs[i-1].job_id - 1;
-
-            if (job_stats[prev_t][prev_j].finish > logs[i].start)
-                preemptions++;
-
-            if (logs[i].task_id != logs[i-1].task_id)
-                cache_points++;
-        }
+        if (logs[i].task_id != logs[i-1].task_id)
+            cache_points++;
     }
+
+    // preemptions_count comes from scheduler
+
 
     int busy = 0;
     for (int i = 0; i < log_count; i++)
@@ -34,8 +27,8 @@ void printParameters(char *name, int hp, int is_first) {
     double cpu_util = (double)busy / hp;
 
     fprintf(fp, "Decision Points: %d\n", decision_points);
-    fprintf(fp, "Context Switches: %d\n", context_switch);
-    fprintf(fp, "Preemptions: %d\n", preemptions);
+    fprintf(fp, "Context Switches: %d (voluntary=%d involuntary=%d)\n", context_switch, voluntary_cs, involuntary_cs);
+    fprintf(fp, "Preemptions: %d\n", preemptions_count);
     fprintf(fp, "Cache Impact: %d\n", cache_points);
     fprintf(fp, "CPU Utilization: %.3f\n\n", cpu_util);
 
@@ -83,6 +76,24 @@ void printParameters(char *name, int hp, int is_first) {
             sum_late += late_d;
         }
 
+        double abs_arr_jitter = 0.0;
+        double rel_arr_jitter = 0.0;
+        if (count > 1) {
+            int min_inter = INT_MAX;
+            int max_inter = 0;
+            for (int j2 = 1; j2 < count; j2++) {
+                int delta = job_stats[t][j2].arrival - job_stats[t][j2-1].arrival;
+                if (delta < min_inter) min_inter = delta;
+                if (delta > max_inter) max_inter = delta;
+            }
+            abs_arr_jitter = (max_inter - min_inter) / 10.0;
+            rel_arr_jitter = (task_set[t].period > 0) ? abs_arr_jitter / (task_set[t].period / 10.0) : 0.0;
+        }
+
+        double abs_resp_jitter = max_rt - min_rt;
+        double avg_rt = (count > 0) ? sum_rt / count : 0.0;
+        double rel_resp_jitter = (avg_rt > 0.0) ? abs_resp_jitter / avg_rt : 0.0;
+
         fprintf(fp, "Task %d:\n", t+1);
 
         fprintf(fp, "Response (min/avg/max): %.2f %.2f %.2f\n",
@@ -94,8 +105,11 @@ void printParameters(char *name, int hp, int is_first) {
         fprintf(fp, "Latency (min/avg/max): %.2f %.2f %.2f\n",
                 min_lat, sum_lat/count, max_lat);
 
-        fprintf(fp, "Lateness (min/avg/max): %.2f %.2f %.2f\n\n",
+        fprintf(fp, "Lateness (min/avg/max): %.2f %.2f %.2f\n",
                 min_late, sum_late/count, max_late);
+
+        fprintf(fp, "Arrival Jitter (abs/rel): %.2f %.2f\n", abs_arr_jitter, rel_arr_jitter);
+        fprintf(fp, "Response Jitter (abs/rel): %.2f %.2f\n\n", abs_resp_jitter, rel_resp_jitter);
     }
 
     fprintf(fp, "Schedule:\n");

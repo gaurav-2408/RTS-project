@@ -1,7 +1,7 @@
 
 EDF Scheduler Results:
 Decision Points: 13
-Context Switches: 12
+Context Switches: 8 (voluntary=5 involuntary=3)
 Preemptions: 3
 Cache Impact: 12
 CPU Utilization: 0.555
@@ -11,18 +11,24 @@ Response (min/avg/max): 0.50 0.64 0.80
 Waiting (min/avg/max): 0.00 0.00 0.00
 Latency (min/avg/max): 0.50 0.64 0.80
 Lateness (min/avg/max): -3.50 -3.36 0.00
+Arrival Jitter (abs/rel): 0.00 0.00
+Response Jitter (abs/rel): 0.30 0.47
 
 Task 2:
 Response (min/avg/max): 1.00 1.58 2.10
 Waiting (min/avg/max): 0.00 0.30 0.60
 Latency (min/avg/max): 1.00 1.42 2.10
 Lateness (min/avg/max): -4.00 -3.43 0.00
+Arrival Jitter (abs/rel): 0.00 0.00
+Response Jitter (abs/rel): 1.10 0.70
 
 Task 3:
 Response (min/avg/max): 6.70 6.70 6.70
 Waiting (min/avg/max): 3.90 3.90 3.90
 Latency (min/avg/max): 4.90 4.90 4.90
 Lateness (min/avg/max): -13.30 -13.30 0.00
+Arrival Jitter (abs/rel): 0.00 0.00
+Response Jitter (abs/rel): 0.00 0.00
 
 Schedule:
 Task 1 Job 1: 0.0 - 0.6
@@ -42,7 +48,7 @@ Task 2 Job 4: 16.6 - 17.1
 
 RM Scheduler Results:
 Decision Points: 13
-Context Switches: 12
+Context Switches: 8 (voluntary=5 involuntary=3)
 Preemptions: 3
 Cache Impact: 12
 CPU Utilization: 0.555
@@ -52,18 +58,24 @@ Response (min/avg/max): 0.50 0.64 0.80
 Waiting (min/avg/max): 0.00 0.00 0.00
 Latency (min/avg/max): 0.50 0.64 0.80
 Lateness (min/avg/max): -3.50 -3.36 0.00
+Arrival Jitter (abs/rel): 0.00 0.00
+Response Jitter (abs/rel): 0.30 0.47
 
 Task 2:
 Response (min/avg/max): 1.00 1.58 2.10
 Waiting (min/avg/max): 0.00 0.30 0.60
 Latency (min/avg/max): 1.00 1.42 2.10
 Lateness (min/avg/max): -4.00 -3.43 0.00
+Arrival Jitter (abs/rel): 0.00 0.00
+Response Jitter (abs/rel): 1.10 0.70
 
 Task 3:
 Response (min/avg/max): 6.70 6.70 6.70
 Waiting (min/avg/max): 3.90 3.90 3.90
 Latency (min/avg/max): 4.90 4.90 4.90
 Lateness (min/avg/max): -13.30 -13.30 0.00
+Arrival Jitter (abs/rel): 0.00 0.00
+Response Jitter (abs/rel): 0.00 0.00
 
 Schedule:
 Task 1 Job 1: 0.0 - 0.6

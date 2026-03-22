@@ -113,6 +113,9 @@ void rm_scheduler(int hp) {
                 logs[log_count++] =
                     (ExecLog){start, time, curr->task_id, curr->job_id};
 
+                if (rq != NULL)
+                    voluntary_cs++;
+
                 free(curr);
                 break;
             }
@@ -125,6 +128,8 @@ void rm_scheduler(int hp) {
 
             if (next != curr) {
 
+                involuntary_cs++;
+                preemptions_count++;
                 logs[log_count++] =
                     (ExecLog){start, time, curr->task_id, curr->job_id};
 

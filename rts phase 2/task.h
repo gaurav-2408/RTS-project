@@ -51,6 +51,10 @@ extern int log_count;
 extern JobStat job_stats[MAX_TASKS][MAX_JOBS_PER_TASK];
 extern int job_count_task[MAX_TASKS];
 
+extern int voluntary_cs;
+extern int involuntary_cs;
+extern int preemptions_count;
+
 void getdata(FILE *fp);
 double compute_utilization();
 int compute_hyperperiod();
