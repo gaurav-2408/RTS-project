@@ -1,9 +1,11 @@
 #include "parameters.h"
 #include <stdio.h>
 
-void printParameters(int hp) {
+void printParameters(char *name, int hp, int is_first) {
 
-    FILE *fp = fopen("metrics.txt", "w");
+    FILE *fp = fopen("metrics.txt", is_first ? "w" : "a");
+
+    fprintf(fp, "\n%s Scheduler Results:\n", name);
 
     int decision_points = log_count;
     int context_switch = log_count - 1;
@@ -90,6 +92,12 @@ void printParameters(int hp) {
         fprintf(fp, "Lateness (min/avg/max): %.2f %.2f %.2f\n\n",
                 min_late, sum_late/count, max_late);
     }
+
+    fprintf(fp, "Schedule:\n");
+    for(int i = 0; i < log_count; i++){
+        fprintf(fp, "Task %d Job %d: %d - %d\n", logs[i].task_id, logs[i].job_id, logs[i].start, logs[i].end);
+    }
+    fprintf(fp, "\n");
 
     fclose(fp);
 }

@@ -3,6 +3,6 @@
 
 #include "task.h"
 
-void printParameters(int hp);
+void printParameters(char *name, int hp, int is_first);
 
 #endif
