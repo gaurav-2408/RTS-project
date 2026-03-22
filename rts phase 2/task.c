@@ -1,10 +1,13 @@
 #include "task.h"
 
-Task task_set[MAX_TASKS];
-Job job_list[MAX_JOBS];
-
+Task *task_set;
 int task_count = 0;
-int job_count = 0;
+
+ExecLog logs[MAX_LOG];
+int log_count = 0;
+
+JobStat job_stats[MAX_TASKS][MAX_JOBS_PER_TASK];
+int job_count_task[MAX_TASKS] = {0};
 
 static int gcd(int a, int b) {
     return (b == 0) ? a : gcd(b, a % b);
@@ -17,13 +20,24 @@ static int lcm(int a, int b) {
 void getdata(FILE *fp) {
     fscanf(fp, "%d", &task_count);
 
+    task_set = malloc(task_count * sizeof(Task));
+
     for (int i = 0; i < task_count; i++) {
         fscanf(fp, "%d %d %d %d",
                &task_set[i].phase,
                &task_set[i].period,
                &task_set[i].wcet,
                &task_set[i].deadline);
+
+        task_set[i].next_release = task_set[i].phase;
     }
+}
+
+double compute_utilization() {
+    double U = 0;
+    for (int i = 0; i < task_count; i++)
+        U += (double)task_set[i].wcet / task_set[i].period;
+    return U;
 }
 
 int compute_hyperperiod() {
@@ -33,22 +47,10 @@ int compute_hyperperiod() {
     return hp;
 }
 
-void generate_jobs(int hyperperiod) {
-    job_count = 0;
-
-    for (int i = 0; i < task_count; i++) {
-        int jid = 1;
-        for (int t = task_set[i].phase; t < hyperperiod; t += task_set[i].period) {
-            job_list[job_count++] = (Job){
-                .task_id = i + 1,
-                .job_id = jid++,
-                .arrival = t,
-                .abs_deadline = t + task_set[i].deadline,
-                .period = task_set[i].period,
-                .remaining_time = task_set[i].wcet,
-                .last_exec_time = -1
-            };
-        }
+void free_queue(Job *rq) {
+    while (rq) {
+        Job *t = rq;
+        rq = rq->next;
+        free(t);
     }
 }
-
