@@ -61,21 +61,26 @@ void printParameters(char *name, int hp, int is_first) {
             int latency = finish - start;
             int lateness = finish - deadline;
 
-            if (response < min_rt) min_rt = response;
-            if (response > max_rt) max_rt = response;
-            sum_rt += response;
+            double resp_d = response / 10.0;
+            double wait_d = waiting / 10.0;
+            double lat_d = latency / 10.0;
+            double late_d = lateness / 10.0;
 
-            if (waiting < min_wt) min_wt = waiting;
-            if (waiting > max_wt) max_wt = waiting;
-            sum_wt += waiting;
+            if (resp_d < min_rt) min_rt = resp_d;
+            if (resp_d > max_rt) max_rt = resp_d;
+            sum_rt += resp_d;
 
-            if (latency < min_lat) min_lat = latency;
-            if (latency > max_lat) max_lat = latency;
-            sum_lat += latency;
+            if (wait_d < min_wt) min_wt = wait_d;
+            if (wait_d > max_wt) max_wt = wait_d;
+            sum_wt += wait_d;
 
-            if (lateness < min_late) min_late = lateness;
-            if (lateness > max_late) max_late = lateness;
-            sum_late += lateness;
+            if (lat_d < min_lat) min_lat = lat_d;
+            if (lat_d > max_lat) max_lat = lat_d;
+            sum_lat += lat_d;
+
+            if (late_d < min_late) min_late = late_d;
+            if (late_d > max_late) max_late = late_d;
+            sum_late += late_d;
         }
 
         fprintf(fp, "Task %d:\n", t+1);
@@ -95,7 +100,7 @@ void printParameters(char *name, int hp, int is_first) {
 
     fprintf(fp, "Schedule:\n");
     for(int i = 0; i < log_count; i++){
-        fprintf(fp, "Task %d Job %d: %d - %d\n", logs[i].task_id, logs[i].job_id, logs[i].start, logs[i].end);
+        fprintf(fp, "Task %d Job %d: %.1f - %.1f\n", logs[i].task_id, logs[i].job_id, logs[i].start / 10.0, logs[i].end / 10.0);
     }
     fprintf(fp, "\n");
 

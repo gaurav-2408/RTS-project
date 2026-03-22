@@ -29,6 +29,11 @@ void getdata(FILE *fp) {
                &task_set[i].wcet,
                &task_set[i].deadline);
 
+        task_set[i].phase *= 10;
+        task_set[i].period *= 10;
+        task_set[i].wcet *= 10;
+        task_set[i].deadline *= 10;
+
         task_set[i].next_release = task_set[i].phase;
     }
 }

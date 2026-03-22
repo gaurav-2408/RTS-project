@@ -8,8 +8,10 @@ void load_actual(char *filename) {
 
     for (int i = 0; i < task_count; i++) {
         for (int j = 0; j < MAX_JOBS_PER_TASK; j++) {
-            if (fscanf(fp, "%d", &actual_exec[i][j]) != 1)
+            float temp;
+            if (fscanf(fp, "%f", &temp) != 1)
                 break;
+            actual_exec[i][j] = (int)(temp * 10);
         }
     }
 
