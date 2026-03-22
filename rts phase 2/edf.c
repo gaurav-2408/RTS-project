@@ -6,6 +6,8 @@ void edf_scheduler(int hp) {
     Job *rq = NULL;
     int time = 0;
     int job_id[MAX_TASKS] = {0};
+    int was_idle = 0;
+    int idle_start = 0;
 
     while (time < hp) {
 
@@ -44,8 +46,17 @@ void edf_scheduler(int hp) {
         }
 
         if (!rq) {
+            if (!was_idle) {
+                was_idle = 1;
+                idle_start = time;
+            }
             time++;
             continue;
+        }
+
+        if (was_idle) {
+            logs[log_count++] = (ExecLog){idle_start, time, 0, 0};
+            was_idle = 0;
         }
 
         Job *curr = rq;
@@ -116,8 +127,12 @@ void edf_scheduler(int hp) {
                 logs[log_count++] =
                     (ExecLog){start, time, curr->task_id, curr->job_id};
 
-                if (rq != NULL)
+                if (rq != NULL) {
                     voluntary_cs++;
+                } else {
+                    was_idle = 1;
+                    idle_start = time;
+                }
 
                 free(curr);
                 break;

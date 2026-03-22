@@ -1,9 +1,9 @@
 
 EDF Scheduler Results:
-Decision Points: 13
+Decision Points: 17
 Context Switches: 8 (voluntary=5 involuntary=3)
 Preemptions: 3
-Cache Impact: 12
+Cache Impact: 16
 CPU Utilization: 0.555
 
 Task 1:
@@ -38,19 +38,23 @@ Task 1 Job 2: 4.0 - 4.7
 Task 3 Job 1: 4.7 - 5.0
 Task 2 Job 2: 5.0 - 6.4
 Task 3 Job 1: 6.4 - 6.7
+Idle: 6.7 - 8.0
 Task 1 Job 3: 8.0 - 8.5
+Idle: 8.5 - 10.0
 Task 2 Job 3: 10.0 - 11.0
+Idle: 11.0 - 12.0
 Task 1 Job 4: 12.0 - 12.8
+Idle: 12.8 - 15.0
 Task 2 Job 4: 15.0 - 16.0
 Task 1 Job 5: 16.0 - 16.6
 Task 2 Job 4: 16.6 - 17.1
 
 
 RM Scheduler Results:
-Decision Points: 13
+Decision Points: 17
 Context Switches: 8 (voluntary=5 involuntary=3)
 Preemptions: 3
-Cache Impact: 12
+Cache Impact: 16
 CPU Utilization: 0.555
 
 Task 1:
@@ -85,9 +89,13 @@ Task 1 Job 2: 4.0 - 4.7
 Task 3 Job 1: 4.7 - 5.0
 Task 2 Job 2: 5.0 - 6.4
 Task 3 Job 1: 6.4 - 6.7
+Idle: 6.7 - 8.0
 Task 1 Job 3: 8.0 - 8.5
+Idle: 8.5 - 10.0
 Task 2 Job 3: 10.0 - 11.0
+Idle: 11.0 - 12.0
 Task 1 Job 4: 12.0 - 12.8
+Idle: 12.8 - 15.0
 Task 2 Job 4: 15.0 - 16.0
 Task 1 Job 5: 16.0 - 16.6
 Task 2 Job 4: 16.6 - 17.1

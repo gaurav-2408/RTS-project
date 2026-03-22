@@ -21,8 +21,10 @@ void printParameters(char *name, int hp, int is_first) {
 
 
     int busy = 0;
-    for (int i = 0; i < log_count; i++)
-        busy += logs[i].end - logs[i].start;
+    for (int i = 0; i < log_count; i++) {
+        if (logs[i].task_id != 0)  // ignore idle entries in CPU busy time
+            busy += logs[i].end - logs[i].start;
+    }
 
     double cpu_util = (double)busy / hp;
 
@@ -114,7 +116,11 @@ void printParameters(char *name, int hp, int is_first) {
 
     fprintf(fp, "Schedule:\n");
     for(int i = 0; i < log_count; i++){
-        fprintf(fp, "Task %d Job %d: %.1f - %.1f\n", logs[i].task_id, logs[i].job_id, logs[i].start / 10.0, logs[i].end / 10.0);
+        if (logs[i].task_id == 0) {
+            fprintf(fp, "Idle: %.1f - %.1f\n", logs[i].start / 10.0, logs[i].end / 10.0);
+        } else {
+            fprintf(fp, "Task %d Job %d: %.1f - %.1f\n", logs[i].task_id, logs[i].job_id, logs[i].start / 10.0, logs[i].end / 10.0);
+        }
     }
     fprintf(fp, "\n");
 
