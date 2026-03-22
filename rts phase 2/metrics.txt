@@ -1,10 +1,10 @@
 
 EDF Scheduler Results:
-Decision Points: 10
-Context Switches: 9
-Preemptions: 0
-Cache Impact: 9
-CPU Utilization: 0.160
+Decision Points: 13
+Context Switches: 12
+Preemptions: 3
+Cache Impact: 12
+CPU Utilization: 0.555
 
 Task 1:
 Response (min/avg/max): 0.50 0.64 0.80
@@ -13,36 +13,39 @@ Latency (min/avg/max): 0.50 0.64 0.80
 Lateness (min/avg/max): -3.50 -3.36 0.00
 
 Task 2:
-Response (min/avg/max): 0.00 0.15 0.60
-Waiting (min/avg/max): 0.00 0.15 0.60
-Latency (min/avg/max): 0.00 0.00 0.00
-Lateness (min/avg/max): -5.00 -4.85 0.00
+Response (min/avg/max): 1.00 1.58 2.10
+Waiting (min/avg/max): 0.00 0.30 0.60
+Latency (min/avg/max): 1.00 1.42 2.10
+Lateness (min/avg/max): -4.00 -3.43 0.00
 
 Task 3:
-Response (min/avg/max): 0.60 0.60 0.60
-Waiting (min/avg/max): 0.60 0.60 0.60
-Latency (min/avg/max): 0.00 0.00 0.00
-Lateness (min/avg/max): -19.40 -19.40 0.00
+Response (min/avg/max): 6.70 6.70 6.70
+Waiting (min/avg/max): 3.90 3.90 3.90
+Latency (min/avg/max): 4.90 4.90 4.90
+Lateness (min/avg/max): -13.30 -13.30 0.00
 
 Schedule:
 Task 1 Job 1: 0.0 - 0.6
-Task 2 Job 1: 0.6 - 0.6
-Task 3 Job 1: 0.6 - 0.6
+Task 2 Job 1: 0.6 - 1.8
+Task 3 Job 1: 1.8 - 4.0
 Task 1 Job 2: 4.0 - 4.7
-Task 2 Job 2: 5.0 - 5.0
+Task 3 Job 1: 4.7 - 5.0
+Task 2 Job 2: 5.0 - 6.4
+Task 3 Job 1: 6.4 - 6.7
 Task 1 Job 3: 8.0 - 8.5
-Task 2 Job 3: 10.0 - 10.0
+Task 2 Job 3: 10.0 - 11.0
 Task 1 Job 4: 12.0 - 12.8
-Task 2 Job 4: 15.0 - 15.0
+Task 2 Job 4: 15.0 - 16.0
 Task 1 Job 5: 16.0 - 16.6
+Task 2 Job 4: 16.6 - 17.1
 
 
 RM Scheduler Results:
-Decision Points: 10
-Context Switches: 9
-Preemptions: 0
-Cache Impact: 9
-CPU Utilization: 0.160
+Decision Points: 13
+Context Switches: 12
+Preemptions: 3
+Cache Impact: 12
+CPU Utilization: 0.555
 
 Task 1:
 Response (min/avg/max): 0.50 0.64 0.80
@@ -51,26 +54,29 @@ Latency (min/avg/max): 0.50 0.64 0.80
 Lateness (min/avg/max): -3.50 -3.36 0.00
 
 Task 2:
-Response (min/avg/max): 0.00 0.15 0.60
-Waiting (min/avg/max): 0.00 0.15 0.60
-Latency (min/avg/max): 0.00 0.00 0.00
-Lateness (min/avg/max): -5.00 -4.85 0.00
+Response (min/avg/max): 1.00 1.58 2.10
+Waiting (min/avg/max): 0.00 0.30 0.60
+Latency (min/avg/max): 1.00 1.42 2.10
+Lateness (min/avg/max): -4.00 -3.43 0.00
 
 Task 3:
-Response (min/avg/max): 0.60 0.60 0.60
-Waiting (min/avg/max): 0.60 0.60 0.60
-Latency (min/avg/max): 0.00 0.00 0.00
-Lateness (min/avg/max): -19.40 -19.40 0.00
+Response (min/avg/max): 6.70 6.70 6.70
+Waiting (min/avg/max): 3.90 3.90 3.90
+Latency (min/avg/max): 4.90 4.90 4.90
+Lateness (min/avg/max): -13.30 -13.30 0.00
 
 Schedule:
 Task 1 Job 1: 0.0 - 0.6
-Task 2 Job 1: 0.6 - 0.6
-Task 3 Job 1: 0.6 - 0.6
+Task 2 Job 1: 0.6 - 1.8
+Task 3 Job 1: 1.8 - 4.0
 Task 1 Job 2: 4.0 - 4.7
-Task 2 Job 2: 5.0 - 5.0
+Task 3 Job 1: 4.7 - 5.0
+Task 2 Job 2: 5.0 - 6.4
+Task 3 Job 1: 6.4 - 6.7
 Task 1 Job 3: 8.0 - 8.5
-Task 2 Job 3: 10.0 - 10.0
+Task 2 Job 3: 10.0 - 11.0
 Task 1 Job 4: 12.0 - 12.8
-Task 2 Job 4: 15.0 - 15.0
+Task 2 Job 4: 15.0 - 16.0
 Task 1 Job 5: 16.0 - 16.6
+Task 2 Job 4: 16.6 - 17.1
 
